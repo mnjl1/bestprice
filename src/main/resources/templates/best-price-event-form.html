@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Best Price Event Form Submission</title>
+</head>
+<body>
+    <form action="/best-price/processSaveBestPriceEvent" th:object="${bestPriceEvent}" method="post">
+        <br>
+        Enter start date: <input type="date" th:field="*{bestPriceStartDate}">
+        Enter end date: <input type="date" th:field="*{bestPriceEndDate}">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
