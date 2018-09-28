@@ -25,9 +25,14 @@ public class BestPriceEventServiceImpl implements BestPriceEventService {
         return bestPriceEventRepository.getOne(id);
     }
 
-    //todo implement sorting by start date
+    //ToDo implement sorting by start date
     @Override
     public List<BestPriceEvent> findAll() {
         return bestPriceEventRepository.findAll();
     }
+
+	@Override
+	public BestPriceEvent findById(Long id) {
+		return bestPriceEventRepository.getOne(id);
+	}
 }

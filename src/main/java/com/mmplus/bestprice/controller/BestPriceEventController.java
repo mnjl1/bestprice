@@ -5,16 +5,20 @@ import com.mmplus.bestprice.service.BestPriceEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/best-price")
 public class BestPriceEventController {
 
-    @Autowired
     private BestPriceEventService bestPriceEventService;
+    
+    public BestPriceEventController(BestPriceEventService bestPriceEventService) {
+		super();
+		this.bestPriceEventService = bestPriceEventService;
+	}
 
-    @RequestMapping(value = "/create-best-price-event-form")
+    @RequestMapping(value = "/best-price-event-form")
     public String saveBestPriceEvent(Model model){
         BestPriceEvent bestPriceEvent = new BestPriceEvent();
         model.addAttribute("bestPriceEvent", bestPriceEvent);
@@ -33,4 +37,5 @@ public class BestPriceEventController {
         model.addAttribute("bestPriceEvents", bestPriceEventService.findAll());
         return "best-price-event-list";
     }
+    
 }
