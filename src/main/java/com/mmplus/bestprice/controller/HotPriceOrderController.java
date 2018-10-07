@@ -32,7 +32,7 @@ public class HotPriceOrderController {
 		
 		//test
 		System.out.println(bestPriceEvent);
-		return "redirect:hot-price-order-form";
+		return "hot-price-order-form";
 	}
 	
 	@RequestMapping("/hot-price-order-form")
@@ -49,6 +49,6 @@ public class HotPriceOrderController {
 		
 		//test
 		System.out.println("inside process " +hotPriceOrder);
-		return "redirect:best-price-event-list";
+		return "best-price-event-list";
 	}
 }
