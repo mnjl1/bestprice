@@ -2,21 +2,30 @@ package com.mmplus.bestprice.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "best_price_event")
-public class BestPriceEvent implements Promo {
+@Table(name = "bestPriceEvent")
+public class BestPriceEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "best_price_event_id")
+    @Column(name = "bestPriceEventId", insertable=false, updatable=false, nullable=false)
     private Long bestPriceEventId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -26,17 +35,31 @@ public class BestPriceEvent implements Promo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "best_price_event_end_date")
     private LocalDate bestPriceEndDate;
+    
+    @OneToMany(mappedBy="bestPriceEvent")
+    //@JoinColumn(name="event_id")
+    private Set<HotPriceOrder> orders;
 
     public BestPriceEvent(){
     }
+   
+	public BestPriceEvent(Long bestPriceEventId, LocalDate bestPriceStartDate, LocalDate bestPriceEndDate) {
+		super();
+		this.bestPriceEventId = bestPriceEventId;
+		this.bestPriceStartDate = bestPriceStartDate;
+		this.bestPriceEndDate = bestPriceEndDate;
+	}
 
-    public BestPriceEvent(Long bestPriceEventId, LocalDate bestPriceStartDate, LocalDate bestPriceEndDate) {
-        this.bestPriceEventId = bestPriceEventId;
-        this.bestPriceStartDate = bestPriceStartDate;
-        this.bestPriceEndDate = bestPriceEndDate;
-    }
-
-    public Long getBestPriceEventId() {
+	public BestPriceEvent(Long bestPriceEventId, LocalDate bestPriceStartDate, LocalDate bestPriceEndDate,
+			Set<HotPriceOrder> orders) {
+		super();
+		this.bestPriceEventId = bestPriceEventId;
+		this.bestPriceStartDate = bestPriceStartDate;
+		this.bestPriceEndDate = bestPriceEndDate;
+		this.orders = orders;
+	}
+	
+	public Long getBestPriceEventId() {
         return bestPriceEventId;
     }
 
@@ -60,7 +83,15 @@ public class BestPriceEvent implements Promo {
         this.bestPriceEndDate = bestPriceEndDate;
     }
 
-    @Override
+	public Set<HotPriceOrder> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<HotPriceOrder> orders) {
+		this.orders = orders;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BestPriceEvent)) return false;
@@ -83,10 +114,5 @@ public class BestPriceEvent implements Promo {
                 ", bestPriceStartDate=" + bestPriceStartDate +
                 ", bestPriceEndDate=" + bestPriceEndDate +
                 '}';
-    }
-
-    @Override
-    public void promoPrice() {
-        System.out.println("This type of promo is free.");
     }
 }

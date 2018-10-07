@@ -5,7 +5,7 @@
     <title>Best Price Event Form Submission</title>
 </head>
 <body>
-    <form action="/processSaveBestPriceEvent" th:object="${bestPriceEvent}" method="post">
+    <form action="/best-price/processSaveBestPriceEvent" th:object="${bestPriceEvent}" method="post">
         <br>
         Enter start date: <input type="date" th:field="*{bestPriceStartDate}">
         Enter end date: <input type="date" th:field="*{bestPriceEndDate}">

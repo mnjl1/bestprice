@@ -4,6 +4,8 @@ import com.mmplus.bestprice.entity.BestPriceEvent;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 public interface BestPriceEventService {
 
     BestPriceEvent saveOrUpdateBestPriceEvent(BestPriceEvent bestPriceEvent);
@@ -11,5 +13,7 @@ public interface BestPriceEventService {
     BestPriceEvent findBestPriceEventById(Long id);
 
     List<BestPriceEvent> findAll();
+    
+    BestPriceEvent findById(Long id);
 
 }

@@ -5,7 +5,7 @@
     <title>Best Price Event List</title>
 </head>
 <body>
-<a href="/best-price-event-form">Add new best price event</a>
+<a href="/best-price/create-best-price-event-form">Add new best price event</a>
     <div class="container">
         <div th:if="${not #lists.isEmpty(bestPriceEvents)}">
             <h2>Best price event list</h2>
@@ -15,18 +15,13 @@
                     <td>Month</td>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Place Order</th>
                 </tr>
                 <tr th:each="event:${bestPriceEvents}">
                     <td th:utext="${event.getBestPriceEventId()}"></td>
                     <td th:utext="${event.getBestPriceStartDate().getMonth()}"></td>
                     <td th:utext="${event.getBestPriceStartDate()}"></td>
                     <td th:utext="${event.getBestPriceEndDate()}"></td>
-                    <td>
-                    	<a th:href="@{${'/create-best-price-order-form/'+event.bestPriceEventId}}">Place Order</a>
-                    </td>
                 </tr>
-                
             </table>
         </div>
     </div>
