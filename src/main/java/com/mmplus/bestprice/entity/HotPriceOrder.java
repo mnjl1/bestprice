@@ -2,6 +2,8 @@ package com.mmplus.bestprice.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,12 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="hot_price_order")
+@Table(name="hotPriceOrder")
 public class HotPriceOrder {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="order_id", updatable=false, insertable=false, nullable=false)
-    private Long id;
+	@Column(name="hotPriceOrderId", nullable=false, insertable=false, updatable=false)
+    private Long hotPriceOrderId;
 	
 	@Column(name="company_name")
     private String companyName;
@@ -33,30 +35,26 @@ public class HotPriceOrder {
 	@Column(name="discount_price")
     private Long discountPrice;
 	
+	@Column(name="order_status")
+	@Enumerated(EnumType.ORDINAL)
+	private HotPriceOrderStatus orderStatus;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="bestPriceEventId", insertable=false, updatable=false)
-    private BestPriceEvent bestPriceEvent;
+	@JoinColumn(name="hotPriceScheduleId", updatable=false, nullable=false)
+    private HotPriceSchedule hotPriceSchedule;
 	
     public HotPriceOrder(){
     }
 
-    public HotPriceOrder(Long bestPriceOrderId, String companyName, String productEan, String productName,
-                          Long regularPrice, Long discountPrice, BestPriceEvent bestPriceEvent) {
-        this.id = bestPriceOrderId;
+    public HotPriceOrder(Long hotPriceOrderId, String companyName, String productEan, String productName,
+                          Long regularPrice, Long discountPrice, HotPriceSchedule hotPriceSchedule) {
+        this.hotPriceOrderId = hotPriceOrderId;
         this.companyName = companyName;
         this.productEan = productEan;
         this.productName = productName;
         this.regularPrice = regularPrice;
         this.discountPrice = discountPrice;
-        this.bestPriceEvent = bestPriceEvent;
-    }
-
-    public Long getBestPriceOrderId() {
-        return id;
-    }
-
-    public void setBestPriceOrderId(Long bestPriceOrderId) {
-        this.id = bestPriceOrderId;
+        this.hotPriceSchedule = hotPriceSchedule;
     }
 
     public String getCompanyName() {
@@ -99,30 +97,20 @@ public class HotPriceOrder {
         this.discountPrice = discountPrice;
     }
 
-    public BestPriceEvent getBestPriceEvent() {
-        return bestPriceEvent;
+    public HotPriceSchedule getHotPriceEvent() {
+        return hotPriceSchedule;
     }
 
-    public void setBestPriceEvent(BestPriceEvent bestPriceEvent) {
-        this.bestPriceEvent = bestPriceEvent;
+    public void setHotPriceEvent(HotPriceSchedule hotPriceSchedule) {
+        this.hotPriceSchedule = hotPriceSchedule;
     }
     
 	public Long getHotPriceOrderId() {
-		return id;
+		return hotPriceOrderId;
 	}
 
 	public void setHotPriceOrderId(Long hotPriceOrderId) {
-		this.id = hotPriceOrderId;
-	}
-	
-	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		this.hotPriceOrderId = hotPriceOrderId;
 	}
 
 	@Override
@@ -130,9 +118,9 @@ public class HotPriceOrder {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
-		result = prime * result + ((bestPriceEvent == null) ? 0 : bestPriceEvent.hashCode());
+		result = prime * result + ((hotPriceSchedule == null) ? 0 : hotPriceSchedule.hashCode());
 		result = prime * result + ((discountPrice == null) ? 0 : discountPrice.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((hotPriceOrderId == null) ? 0 : hotPriceOrderId.hashCode());
 		result = prime * result + ((productEan == null) ? 0 : productEan.hashCode());
 		result = prime * result + ((productName == null) ? 0 : productName.hashCode());
 		result = prime * result + ((regularPrice == null) ? 0 : regularPrice.hashCode());
@@ -153,20 +141,20 @@ public class HotPriceOrder {
 				return false;
 		} else if (!companyName.equals(other.companyName))
 			return false;
-		if (bestPriceEvent == null) {
-			if (other.bestPriceEvent != null)
+		if (hotPriceSchedule == null) {
+			if (other.hotPriceSchedule != null)
 				return false;
-		} else if (!bestPriceEvent.equals(other.bestPriceEvent))
+		} else if (!hotPriceSchedule.equals(other.hotPriceSchedule))
 			return false;
 		if (discountPrice == null) {
 			if (other.discountPrice != null)
 				return false;
 		} else if (!discountPrice.equals(other.discountPrice))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (hotPriceOrderId == null) {
+			if (other.hotPriceOrderId != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!hotPriceOrderId.equals(other.hotPriceOrderId))
 			return false;
 		if (productEan == null) {
 			if (other.productEan != null)
@@ -188,10 +176,8 @@ public class HotPriceOrder {
 
 	@Override
 	public String toString() {
-		return "HoPriceOrder [hotPriceOrderId=" + id + ", CompanyName=" + companyName + ", productEan="
+		return "HotPriceOrder [hotPriceOrderId=" + hotPriceOrderId + ", companyName=" + companyName + ", productEan="
 				+ productEan + ", productName=" + productName + ", regularPrice=" + regularPrice + ", discountPrice="
-				+ discountPrice + ", bestPriceEvent=" + bestPriceEvent + "]";
+				+ discountPrice + ", orderStatus=" + orderStatus + ", hotPriceSchedule=" + hotPriceSchedule + "]";
 	}
-    
-    
 }

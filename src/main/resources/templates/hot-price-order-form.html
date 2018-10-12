@@ -3,18 +3,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
-		<title>Hot price form submission</title>
+		<title>Placing hot price order</title>
 	</head>
-		
-		
 	
 	<body>	
 		<form action="/process-hot-price-order-form" th:object="${hotPriceOrder}" method="post">
 		
-	 		<input type="hidden" name="bestPriceEvent" th:value="${bestPriceEvent.bestPriceEventId}">
-			Start date: <p th:text="${bestPriceEvent.bestPriceStartDate}">Start Date</p>
-			End date: <p  th:text="${bestPriceEvent.bestPriceEndDate}">Start Date</p>
-			Company:<input type="text" th:field="*{companyName}"/>
+	 		<input name="hotPriceSchedule" th:value="${hotPriceSchedule.hotPriceScheduleId}">
+			start date: <p th:text="${hotPriceSchedule.hotPriceStartDate}"/>
+			end date: <p th:text="${hotPriceSchedule.hotPriceEndDate}"/>
+			
+			Company<input type="text" th:field="*{companyName}"/>
+			EAN<input type="text" th:field="*{productEan}"/>
+			Product name <input type="text" th:field=*{productName}/>
+			Regular price <input type="text" th:field=*{regularPrice}/>
+			Discount price <input type="text" th:field=*{discountPrice}/>
 	
 			<input type="submit" value="Submit"/>
 		</form>

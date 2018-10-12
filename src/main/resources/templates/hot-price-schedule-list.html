@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hot Price Event List</title>
+</head>
+<body>
+<a href="/hot-price-schedule-form">Add new hot price event.</a>
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
+            <h2>Schedule</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <td>Month</td>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Place order</th>
+                </tr>
+                <tr th:each="event:${hotPriceEvents}">
+                    <td th:utext="${event.getHotPriceScheduleId()}"></td>
+                    <td th:utext="${event.getHotPriceStartDate().getMonth()}"></td>
+                    <td th:utext="${event.getHotPriceStartDate()}"></td>
+                    <td th:utext="${event.getHotPriceEndDate()}"></td>
+                    <td>
+                    	<a th:href="@{${'/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Place order</a>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+</body>
+</html>

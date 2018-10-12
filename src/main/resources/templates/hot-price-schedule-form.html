@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hot Price Event Form Submission</title>
+</head>
+<body>
+    <form action="/processSaveHotPriceSchedule" th:object="${hotPriceSchedule}" method="post">
+        <br>
+        Enter start date: <input type="date" th:field="*{hotPriceStartDate}">
+        Enter end date: <input type="date" th:field="*{hotPriceEndDate}">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>

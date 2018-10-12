@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BestpriceApplication {
+public class HotPriceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BestpriceApplication.class, args);
+        SpringApplication.run(HotPriceApplication.class, args);
     }
 }
