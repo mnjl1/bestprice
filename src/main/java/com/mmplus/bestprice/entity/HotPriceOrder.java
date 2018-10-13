@@ -2,6 +2,8 @@ package com.mmplus.bestprice.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,22 +38,26 @@ public class HotPriceOrder {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="hotPriceScheduleId", insertable=false, updatable=false)
     private HotPriceSchedule hotPriceSchedule;
+
+	@Column(name="orderStatus")
+	@Enumerated(EnumType.ORDINAL)
+	private OrderStatus orderStatus;
 	
     public HotPriceOrder(){
     }
 
-    public HotPriceOrder(Long bestPriceOrderId, String companyName, String productEan, String productName,
-                          Long regularPrice, Long discountPrice, HotPriceSchedule hotPriceSchedule) {
-        this.id = bestPriceOrderId;
-        this.companyName = companyName;
-        this.productEan = productEan;
-        this.productName = productName;
-        this.regularPrice = regularPrice;
-        this.discountPrice = discountPrice;
-        this.hotPriceSchedule = hotPriceSchedule;
-    }
+	public HotPriceOrder(String companyName, String productEan, String productName, Long regularPrice,
+						 Long discountPrice, HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
+		this.companyName = companyName;
+		this.productEan = productEan;
+		this.productName = productName;
+		this.regularPrice = regularPrice;
+		this.discountPrice = discountPrice;
+		this.hotPriceSchedule = hotPriceSchedule;
+		this.orderStatus = orderStatus;
+	}
 
-    public Long getBestPriceOrderId() {
+	public Long getBestPriceOrderId() {
         return id;
     }
 
@@ -114,8 +120,6 @@ public class HotPriceOrder {
 	public void setHotPriceOrderId(Long hotPriceOrderId) {
 		this.id = hotPriceOrderId;
 	}
-	
-	
 
 	public Long getId() {
 		return id;
@@ -123,6 +127,14 @@ public class HotPriceOrder {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	@Override
