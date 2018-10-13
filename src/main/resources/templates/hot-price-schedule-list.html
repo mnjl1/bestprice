@@ -5,9 +5,9 @@
     <title>Best Price Event List</title>
 </head>
 <body>
-<a href="/best-price-event-form">Add new best price event</a>
+<a href="/hot-price-schedule-form">Add new best price event</a>
     <div class="container">
-        <div th:if="${not #lists.isEmpty(bestPriceEvents)}">
+        <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
             <h2>Best price event list</h2>
             <table class="table table-striped">
                 <tr>
@@ -17,13 +17,13 @@
                     <th>End Date</th>
                     <th>Place Order</th>
                 </tr>
-                <tr th:each="event:${bestPriceEvents}">
-                    <td th:utext="${event.getBestPriceEventId()}"></td>
-                    <td th:utext="${event.getBestPriceStartDate().getMonth()}"></td>
-                    <td th:utext="${event.getBestPriceStartDate()}"></td>
-                    <td th:utext="${event.getBestPriceEndDate()}"></td>
+                <tr th:each="event:${hotPriceEvents}">
+                    <td th:utext="${event.getHotPriceScheduleId()}"></td>
+                    <td th:utext="${event.getHotPriceStartDate().getMonth()}"></td>
+                    <td th:utext="${event.getHotPriceStartDate()}"></td>
+                    <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'/create-best-price-order-form/'+event.bestPriceEventId}}">Place Order</a>
+                    	<a th:href="@{${'/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Place Order</a>
                     </td>
                 </tr>
                 
