@@ -6,39 +6,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mmplus.bestprice.entity.BestPriceEvent;
+import com.mmplus.bestprice.entity.HotPriceSchedule;
 import com.mmplus.bestprice.entity.HotPriceOrder;
-import com.mmplus.bestprice.service.BestPriceEventService;
+import com.mmplus.bestprice.service.HotPriceScheduleService;
 import com.mmplus.bestprice.service.HotPriceOrderService;
 
 @Controller
 public class HotPriceOrderController {
 	
 	private HotPriceOrderService hotPriceOrderService;
-	private BestPriceEventService bestPriceEventService;
+	private HotPriceScheduleService hotPriceScheduleService;
 	
 	public HotPriceOrderController(HotPriceOrderService hotPriceOrderService,
-			BestPriceEventService bestPriceEventService) {
+			HotPriceScheduleService hotPriceScheduleService) {
 		this.hotPriceOrderService = hotPriceOrderService;
-		this.bestPriceEventService = bestPriceEventService;
+		this.hotPriceScheduleService = hotPriceScheduleService;
 	}
 
-	@RequestMapping(value="/create-best-price-order-form/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/create-hot-price-order-form/{id}", method=RequestMethod.GET)
 	public String saveOrUpdateOrder(Model model, @PathVariable(value="id") Long id) {
 		HotPriceOrder hotPriceOrder = new HotPriceOrder();
-		BestPriceEvent bestPriceEvent = bestPriceEventService.findById(id);
+		HotPriceSchedule hotPriceSchedule = hotPriceScheduleService.findById(id);
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
-		model.addAttribute("bestPriceEvent", bestPriceEvent);
-		
-		//test
-		System.out.println(bestPriceEvent);
+		model.addAttribute("hotPriceEvent", hotPriceSchedule);
 		return "hot-price-order-form";
 	}
 	
 	@RequestMapping("/hot-price-order-form")
 	public String hotPriceOrderForm(Model model, HotPriceOrder hotPriceOrder) {
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
-		System.out.println("inside form " +hotPriceOrder);
 		return "hot-price-order-form";
 	}
 	
@@ -46,9 +42,6 @@ public class HotPriceOrderController {
 	public String processHotPriceForm(Model model, HotPriceOrder hotPriceOrder){
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
 		hotPriceOrderService.saveOrUpdateHotPriceOrder(hotPriceOrder);
-		
-		//test
-		System.out.println("inside process " +hotPriceOrder);
-		return "best-price-event-list";
+		return "hot-price-schedule-list";
 	}
 }

@@ -10,10 +10,10 @@
 	
 	<body>	
 		<form action="/process-hot-price-order-form" th:object="${hotPriceOrder}" method="post">
-		
-	 		<input type="hidden" name="bestPriceEvent" th:value="${bestPriceEvent.bestPriceEventId}">
-			Start date: <p th:text="${bestPriceEvent.bestPriceStartDate}">Start Date</p>
-			End date: <p  th:text="${bestPriceEvent.bestPriceEndDate}">Start Date</p>
+
+	 		<input type="hidden" name="hotPriceSchedule" th:value="${hotPriceEvent.getHotPriceScheduleId()}">
+			Start date: <p th:text="${hotPriceEvent.hotPriceStartDate}">Start Date</p>
+			End date: <p  th:text="${hotPriceEvent.hotPriceEndDate}">Start Date</p>
 			Company:<input type="text" th:field="*{companyName}"/>
 	
 			<input type="submit" value="Submit"/>
