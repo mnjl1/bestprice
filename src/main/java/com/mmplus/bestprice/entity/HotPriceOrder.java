@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Table(name="hotPriceOrder")
 public class HotPriceOrder {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="order_id", updatable=false, insertable=false, nullable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="order_id")
     private Long id;
 	
 	@Column(name="company_name")

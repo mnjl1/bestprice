@@ -35,5 +35,4 @@ public class HotPriceScheduleController {
         model.addAttribute("hotPriceEvents", hotPriceScheduleService.findAll());
         return "hot-price-schedule-list";
     }
-    
 }

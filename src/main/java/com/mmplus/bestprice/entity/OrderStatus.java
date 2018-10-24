@@ -6,19 +6,19 @@ public enum OrderStatus {
 
     ORDER_STATUS_UNDER_CONSIDERATION(0){
         public String toString(){
-            return Constants.ORDER_UNDER_CONSIDERATION;
+            return Constants.UA_ORDER_UNDER_CONSIDERATION;
         }
     },
 
     ORDER_STATUS_ACCEPTED(1){
         public String toString(){
-            return Constants.ORDER_STATUS_ACCEPTED;
+            return Constants.UA_ORDER_STATUS_ACCEPTED;
         }
     },
 
     ORDER_STATUS_DECLINED(2){
         public String toString(){
-            return Constants.ORDER_STATUS_DECLINED;
+            return Constants.UA_ORDER_STATUS_DECLINED;
         }
     };
 

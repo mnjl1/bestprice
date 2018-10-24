@@ -42,6 +42,6 @@ public class HotPriceOrderController {
 	public String processHotPriceForm(Model model, HotPriceOrder hotPriceOrder){
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
 		hotPriceOrderService.saveOrUpdateHotPriceOrder(hotPriceOrder);
-		return "hot-price-schedule-list";
+		return "redirect:hot-price-schedule-list";
 	}
 }

@@ -17,8 +17,8 @@ import java.util.Set;
 @Table(name = "hotPriceSchedule")
 public class HotPriceSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "hotPriceScheduleId", insertable=false, updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hotPriceScheduleId", nullable=false)
     private Long hotPriceScheduleId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
