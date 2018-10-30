@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Best Price Event List</title>
+    <title>Orders Process page</title>
 </head>
 <body>
+<a href="/">Process schedule</a>
     <div class="container">
         <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
-            <h2>Best price event list</h2>
+            <h2>Orders Process page</h2>
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
                     <td>Month</td>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Place Order</th>
+                    <th>Process orders</th>
                 </tr>
                 <tr th:each="event:${hotPriceEvents}">
                     <td th:utext="${event.getHotPriceScheduleId()}"></td>
@@ -22,7 +23,7 @@
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Place Order</a>
+                    	<a th:href="@{${'/hot-price-schedule-list-per-date/'+event.hotPriceScheduleId}}">Process date</a>
                     </td>
                 </tr> 
             </table>
