@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Value;
+
 @Entity
 @Table(name="hotPriceOrder")
 public class HotPriceOrder {
@@ -36,16 +38,16 @@ public class HotPriceOrder {
     private Long discountPrice;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="hotPriceScheduleId", insertable=false, updatable=false)
+	@JoinColumn(name="hotPriceScheduleId")
     private HotPriceSchedule hotPriceSchedule;
 
 	@Column(name="orderStatus")
 	@Enumerated(EnumType.ORDINAL)
-	private OrderStatus orderStatus;
+	private OrderStatus orderStatus = OrderStatus.ORDER_STATUS_UNDER_CONSIDERATION;
 	
     public HotPriceOrder(){
     }
-
+    
 	public HotPriceOrder(String companyName, String productEan, String productName, Long regularPrice,
 						 Long discountPrice, HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
 		this.companyName = companyName;

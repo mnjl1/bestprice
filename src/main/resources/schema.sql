@@ -14,6 +14,6 @@ drop table if exists hotPriceOrder;
  product_name varchar (50),
  regular_price DOUBLE PRECISION ,
  discount_price DOUBLE PRECISION ,
- hotPriceScheduleId integer ,
+ hotPriceScheduleId int ,
  orderStatus int
 );

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Best Price Event List</title>
+</head>
+<body>
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(ordersPerDate)}">
+            <h2>Best price event list</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <td>Company Name</td>
+                    <th>ean</th>
+                    <th>Product Name</th>
+                    <th>Regular Price</th>
+                    <th>Discount Price</th>
+                    <th>Status</th>
+                    <th>Place Order</th>
+                </tr>
+                <tr th:each="order:${ordersPerDate}">
+                    <td th:utext="${order.id}"></td>
+                    <td th:utext="${order.companyName}"></td>
+                    <td th:utext="${order.productEan}"></td>
+                    <td th:utext="${order.productName}"></td>
+                    <td th:utext="${order.regularPrice}"></td>
+                    <td th:utext="${order.discountPrice}"></td>
+                    <td th:utext="${order.orderStatus}"></td>
+                    <td>
+                    	<a th:href="@{${'/hot-price-order/'+order.id}}">Process Order</a>
+                    </td>
+                </tr> 
+            </table>
+        </div>
+    </div>
+</body>
+</html>

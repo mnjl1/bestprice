@@ -2,27 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Best Price Event List</title>
+    <title>Hot Price Event List</title>
 </head>
 <body>
+<a href="/hot-price-order">Process Hot price Orders</a>
     <div class="container">
-        <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
-            <h2>Best price event list</h2>
+        <div th:if="${not #lists.isEmpty(orders)}">
+            <h2>Hot price event list</h2>
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
-                    <td>Month</td>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Place Order</th>
+                    <td>Company</td>
+                    <th>Ean</th>
+                    <th>Product</th>
+                    <th>Regular price</th>
+                    <th>Discount price</th>
+                    <th>Status</th>
                 </tr>
-                <tr th:each="event:${hotPriceEvents}">
-                    <td th:utext="${event.getHotPriceScheduleId()}"></td>
+                <tr th:each="order:${orders}">
+                    <td th:utext="${orders.id}"></td>
                     <td th:utext="${event.getHotPriceStartDate().getMonth()}"></td>
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Place Order</a>
+                    	<a th:href="@{${'event.hotPriceScheduleId}}">Process Order</a>
                     </td>
                 </tr> 
             </table>
