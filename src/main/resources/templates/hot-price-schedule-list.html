@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Best Price Event List</title>
+   <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
+    
     <div class="container">
         <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
-            <h2>Best price event list</h2>
-            <table class="table table-striped">
+            <h2>Графік "Гаряча ціна"</h2>
+            <table>
                 <tr>
                     <th>Id</th>
                     <td>Month</td>
@@ -28,5 +31,6 @@
             </table>
         </div>
     </div>
+  
 </body>
 </html>
