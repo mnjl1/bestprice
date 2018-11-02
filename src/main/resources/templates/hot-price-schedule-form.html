@@ -5,13 +5,23 @@
     <title>Hot Price Event Form Submission</title>
 </head>
 <body>
+		<div class="header">
+			Додавання нового періоду "Гаряча ціна" 
+		</div>
+	<div class="form">	
     <form action="/processSaveHotPriceSchedule" th:object="${hotPriceSchedule}" method="post">
-        <br>
-        Enter start date: <input type="date" th:field="*{hotPriceStartDate}">
-        Enter end date: <input type="date" th:field="*{hotPriceEndDate}">
-        <br><br>
+      
+      	<label>Початок</label>
+        <input type="date" th:field="*{hotPriceStartDate}">
+        
+        <label>Кінець</label>
+        <input type="date" th:field="*{hotPriceEndDate}">
+       
         <input type="submit" value="Submit">
+        </div>
     </form>
+    
+    </div>
 
 </body>
 </html>
