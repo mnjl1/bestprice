@@ -15,5 +15,6 @@ drop table if exists hotPriceOrder;
  regular_price DOUBLE PRECISION ,
  discount_price DOUBLE PRECISION ,
  hotPriceScheduleId int ,
- orderStatus int
+ orderStatus int,
+ created_date date
 );

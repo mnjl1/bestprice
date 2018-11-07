@@ -1,5 +1,7 @@
 package com.mmplus.bestprice.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -37,6 +39,9 @@ public class HotPriceOrder {
 	@Column(name="discount_price")
     private Long discountPrice;
 	
+	@Column(name="created_date")
+	private LocalDate createdAt = LocalDate.now();
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="hotPriceScheduleId")
     private HotPriceSchedule hotPriceSchedule;
@@ -48,16 +53,24 @@ public class HotPriceOrder {
     public HotPriceOrder(){
     }
     
-	public HotPriceOrder(String companyName, String productEan, String productName, Long regularPrice,
-						 Long discountPrice, HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
+	
+
+	public HotPriceOrder(Long id, String companyName, String productEan,
+			String productName, Long regularPrice,
+			Long discountPrice, LocalDate createdAt,
+			HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
+		this.id = id;
 		this.companyName = companyName;
 		this.productEan = productEan;
 		this.productName = productName;
 		this.regularPrice = regularPrice;
 		this.discountPrice = discountPrice;
+		this.createdAt = createdAt;
 		this.hotPriceSchedule = hotPriceSchedule;
 		this.orderStatus = orderStatus;
 	}
+
+
 
 	public Long getBestPriceOrderId() {
         return id;
@@ -138,6 +151,14 @@ public class HotPriceOrder {
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+	
+	public LocalDate getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDate createdAt) {
+		this.createdAt = createdAt;
+	}
 
 	@Override
 	public int hashCode() {
@@ -200,12 +221,13 @@ public class HotPriceOrder {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "HoPriceOrder [hotPriceOrderId=" + id + ", CompanyName=" + companyName + ", productEan="
-				+ productEan + ", productName=" + productName + ", regularPrice=" + regularPrice + ", discountPrice="
-				+ discountPrice + ", hotPriceSchedule=" + hotPriceSchedule + "]";
-	}
-    
-    
+		return "HotPriceOrder [id=" + id + ", companyName=" + companyName + ", productEan=" + productEan
+				+ ", productName=" + productName + ", regularPrice=" + regularPrice + ", discountPrice=" + discountPrice
+				+ ", createdAt=" + createdAt + ", hotPriceSchedule=" + hotPriceSchedule + ", orderStatus=" + orderStatus
+				+ "]";
+	}  
 }
