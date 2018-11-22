@@ -6,19 +6,20 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
-<a href="/hot-price-order">Process Hot price Orders</a>
+<header th:replace="fragments/header.html :: header"></header>
+<a href="/hot-price-order">Обробка замовлень</a>
     <div class="container">
         <div th:if="${not #lists.isEmpty(orders)}">
             <h2>Hot price event list</h2>
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
-                    <td>Company</td>
-                    <th>Ean</th>
-                    <th>Product</th>
-                    <th>Regular price</th>
-                    <th>Discount price</th>
-                    <th>Status</th>
+                    <td>Постачальник</td>
+                    <th>Штрих-код</th>
+                    <th>Товар</th>
+                    <th>Регулярна ціна</th>
+                    <th>Ціна зі зніжкою</th>
+                    <th>Статус замовлення</th>
                 </tr>
                 <tr th:each="order:${orders}">
                     <td th:utext="${orders.id}"></td>
@@ -26,7 +27,7 @@
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'event.hotPriceScheduleId}}">Process Order</a>
+                    	<a th:href="@{${'event.hotPriceScheduleId}}">Обробка замовлення</a>
                     </td>
                 </tr> 
             </table>
