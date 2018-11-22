@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
+<header th:replace="fragments/header.html :: header"></header>
 <a href="/">Process schedule</a>
     <div class="container">
         <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
@@ -13,10 +14,10 @@
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
-                    <td>Month</td>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Process orders</th>
+                    <td>Місяць</td>
+                    <th>Початок</th>
+                    <th>Кінець</th>
+                    <th>Обробка</th>
                 </tr>
                 <tr th:each="event:${hotPriceEvents}">
                     <td th:utext="${event.getHotPriceScheduleId()}"></td>
@@ -24,7 +25,7 @@
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'/hot-price-schedule-list-per-date/'+event.hotPriceScheduleId}}">Process date</a>
+                    	<a th:href="@{${'/hot-price-schedule-list-per-date/'+event.hotPriceScheduleId}}">Обробка замовлення</a>
                     </td>
                 </tr> 
             </table>
