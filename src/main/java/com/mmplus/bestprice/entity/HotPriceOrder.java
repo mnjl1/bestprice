@@ -14,51 +14,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.beans.factory.annotation.Value;
-
 @Entity
-@Table(name="hotPriceOrder")
+@Table(name = "hotPriceOrder")
 public class HotPriceOrder {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="order_id")
-    private Long id;
-	
-	@Column(name="company_name")
-    private String companyName;
-	
-	@Column(name="ean")
-    private String productEan;
-	
-	@Column(name="product_name")
-    private String productName;
-    
-	@Column(name="regular_price")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_id")
+	private Long id;
+
+	@Column(name = "company_name")
+	private String companyName;
+
+	@Column(name = "ean")
+	private String productEan;
+
+	@Column(name = "product_name")
+	private String productName;
+
+	@Column(name = "regular_price")
 	private Long regularPrice;
-	
-	@Column(name="discount_price")
-    private Long discountPrice;
-	
-	@Column(name="created_date")
+
+	@Column(name = "discount_price")
+	private Long discountPrice;
+
+	@Column(name = "created_date")
 	private LocalDate createdAt = LocalDate.now();
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="hotPriceScheduleId")
-    private HotPriceSchedule hotPriceSchedule;
 
-	@Column(name="orderStatus")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "hotPriceScheduleId")
+	private HotPriceSchedule hotPriceSchedule;
+
+	@Column(name = "orderStatus")
 	@Enumerated(EnumType.ORDINAL)
-	private OrderStatus orderStatus = OrderStatus.ORDER_STATUS_UNDER_CONSIDERATION;
-	
-    public HotPriceOrder(){
-    }
-    
-	
+	private OrderStatus orderStatus;
 
-	public HotPriceOrder(Long id, String companyName, String productEan,
-			String productName, Long regularPrice,
-			Long discountPrice, LocalDate createdAt,
-			HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
+	public HotPriceOrder() {
+	}
+
+	public HotPriceOrder(Long id, String companyName, String productEan, String productName, Long regularPrice, Long discountPrice, LocalDate createdAt, HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
 		this.id = id;
 		this.companyName = companyName;
 		this.productEan = productEan;
@@ -70,64 +63,62 @@ public class HotPriceOrder {
 		this.orderStatus = orderStatus;
 	}
 
-
-
 	public Long getBestPriceOrderId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setBestPriceOrderId(Long bestPriceOrderId) {
-        this.id = bestPriceOrderId;
-    }
+	public void setBestPriceOrderId(Long bestPriceOrderId) {
+		this.id = bestPriceOrderId;
+	}
 
-    public String getCompanyName() {
-        return companyName;
-    }
+	public String getCompanyName() {
+		return companyName;
+	}
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 
-    public String getProductEan() {
-        return productEan;
-    }
+	public String getProductEan() {
+		return productEan;
+	}
 
-    public void setProductEan(String productEan) {
-        this.productEan = productEan;
-    }
+	public void setProductEan(String productEan) {
+		this.productEan = productEan;
+	}
 
-    public String getProductName() {
-        return productName;
-    }
+	public String getProductName() {
+		return productName;
+	}
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
-    public Long getRegularPrice() {
-        return regularPrice;
-    }
+	public Long getRegularPrice() {
+		return regularPrice;
+	}
 
-    public void setRegularPrice(Long regularPrice) {
-        this.regularPrice = regularPrice;
-    }
+	public void setRegularPrice(Long regularPrice) {
+		this.regularPrice = regularPrice;
+	}
 
-    public Long getDiscountPrice() {
-        return discountPrice;
-    }
+	public Long getDiscountPrice() {
+		return discountPrice;
+	}
 
-    public void setDiscountPrice(Long discountPrice) {
-        this.discountPrice = discountPrice;
-    }
+	public void setDiscountPrice(Long discountPrice) {
+		this.discountPrice = discountPrice;
+	}
 
-    public HotPriceSchedule getHotPriceSchedule() {
-        return hotPriceSchedule;
-    }
+	public HotPriceSchedule getHotPriceSchedule() {
+		return hotPriceSchedule;
+	}
 
-    public void setHotPriceSchedule(HotPriceSchedule hotPriceSchedule) {
-        this.hotPriceSchedule = hotPriceSchedule;
-    }
-    
+	public void setHotPriceSchedule(HotPriceSchedule hotPriceSchedule) {
+		this.hotPriceSchedule = hotPriceSchedule;
+	}
+
 	public Long getHotPriceOrderId() {
 		return id;
 	}
@@ -151,7 +142,7 @@ public class HotPriceOrder {
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	
+
 	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
@@ -221,13 +212,9 @@ public class HotPriceOrder {
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "HotPriceOrder [id=" + id + ", companyName=" + companyName + ", productEan=" + productEan
-				+ ", productName=" + productName + ", regularPrice=" + regularPrice + ", discountPrice=" + discountPrice
-				+ ", createdAt=" + createdAt + ", hotPriceSchedule=" + hotPriceSchedule + ", orderStatus=" + orderStatus
-				+ "]";
-	}  
+		return "HotPriceOrder [id=" + id + ", companyName=" + companyName + ", productEan=" + productEan + ", productName=" + productName + ", regularPrice=" + regularPrice + ", discountPrice=" + discountPrice + ", createdAt=" + createdAt
+				+ ", hotPriceSchedule=" + hotPriceSchedule + ", orderStatus=" + orderStatus + "]";
+	}
 }
