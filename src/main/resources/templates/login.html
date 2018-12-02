@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	</head>
+		<body>
+			<h1>Авторизація</h1>
+			<form class="form-signing" action="@{/login}" method="post">
+				<fieldset>
+					<div class="form-group">
+						<label for="username">Поштова скринька</label>
+						<input type="email" name="username" id="username" class="form-control" th:value="${email}"
+						placeholder="Введіть імейл"required th:autofocus="${email==null}">						
+					</div>
+					<div class="form-control">
+						<label for="password">Пароль</label>
+						<input type="password" name="password" id="password" class="form-control"
+						placeholder="Введіть пароль" required th:autofocus="${email!=null}">
+					</div>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+				</fieldset>
+			</form>
+		</body>
+</html>
