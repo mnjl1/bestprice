@@ -6,20 +6,20 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	</head>
 		<body>
-			<h1>Авторизація</h1>
-			<form class="form-signing" action="@{/login}" method="post">
+			<h1 class="login-title">Авторизація</h1>
+			<form class="login" th:action="@{/login}" method="post">
 				<fieldset>
-					<div class="form-group">
-						<label for="username">Поштова скринька</label>
-						<input type="email" name="username" id="username" class="form-control" th:value="${email}"
+					<div th:if="${param.error}">
+						<div id="error" class="alert alert-danger">
+							Невірний логін або пароль!
+						</div>
+					</div>
+						<input class="login-input" type="email" name="username" id="username" th:value="${email}"
 						placeholder="Введіть імейл"required th:autofocus="${email==null}">						
-					</div>
-					<div class="form-control">
-						<label for="password">Пароль</label>
-						<input type="password" name="password" id="password" class="form-control"
+						
+						<input class="login-input" type="password" name="password" id="password"
 						placeholder="Введіть пароль" required th:autofocus="${email!=null}">
-					</div>
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+					<button type="submit" class="login-button">Log in</button>
 				</fieldset>
 			</form>
 		</body>

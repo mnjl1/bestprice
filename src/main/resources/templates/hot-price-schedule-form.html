@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Hot Price Event Form Submission</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
 </head>
 <body>
 <header th:replace="fragments/header.html :: header"></header>
+	<br><br>
 		<div class="header">
 			Додавання нового періоду "Гаряча ціна" 
 		</div>
 	<div class="form">	
-    <form action="/processSaveHotPriceSchedule" th:object="${hotPriceSchedule}" method="post">
+    <form action="processSaveHotPriceSchedule" th:object="${hotPriceSchedule}" method="post">
       
       	<label>Початок</label>
         <input type="date" th:field="*{hotPriceStartDate}">
