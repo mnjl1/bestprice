@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	</head>
+		<body>
+			<h1 class="login-title">Авторизація</h1>
+			
+			<form class="login" th:action="@{/login}" method="post">
+				<fieldset>		
+					<div th:if="${param.error}">
+						<div id="error" class="alert alert-danger">
+							Невірний логін або пароль!
+						</div>
+					</div>
+					<div th:if="${param.logout}">
+						<div id="logout-msg" class="alert alert-info">
+							Ви вийшли з системи.
+						</div>
+					</div>
+					
+						<input class="login-input" type="email" name="username" id="username" th:value="${email}"
+						placeholder="Введіть імейл"required th:autofocus="${email==null}">						
+						
+						<input class="login-input" type="password" name="password" id="password"
+						placeholder="Введіть пароль" required th:autofocus="${email!=null}">
+					<button type="submit" class="login-button">Log in</button>
+				</fieldset>
+			</form>
+		</body>
+</html>
