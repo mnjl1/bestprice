@@ -12,6 +12,9 @@
         <a href="hot-price-schedule-form">Додати новий період</a>
         <a href="hot-price-schedule-list">Графік "Гаряча ціна"</a>
         <a href="hot-price-schedule-list-for-process">Обробка замовлень</a>
+        <div sec:authorize="isAuthenticated()">
+        	<a href="/login" th:href="@{/logout}" class="btn btn-outline-danger my-2 my-sm-0"> Вийти</a>
+        </div>
     </header>
 </body>
 </html>
