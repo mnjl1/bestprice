@@ -12,15 +12,15 @@ import com.mmplus.bestprice.entity.HotPriceSchedule;
 import com.mmplus.bestprice.service.HotPriceScheduleService;
 
 @Controller
+@RequestMapping("/mmplus")
 public class HotPriceScheduleController {
 
 	private HotPriceScheduleService hotPriceScheduleService;
 
 	public HotPriceScheduleController(HotPriceScheduleService hotPriceScheduleService) {
-		super();
 		this.hotPriceScheduleService = hotPriceScheduleService;
 	}
-
+	
 	@RequestMapping(value = "/hot-price-schedule-form")
 	public String saveBestPriceEvent(Model model) {
 		HotPriceSchedule hotPriceSchedule = new HotPriceSchedule();
@@ -34,13 +34,7 @@ public class HotPriceScheduleController {
 		hotPriceScheduleService.saveOrUpdateBestPriceEvent(hotPriceSchedule);
 		return "redirect:hot-price-schedule-list";
 	}
-
-	@RequestMapping("/hot-price-schedule-list")
-	public String getBestPriceEventsList(Model model) {
-		model.addAttribute("hotPriceEvents", hotPriceScheduleService.findAll());
-		return "hot-price-schedule-list";
-	}
-
+	
 	@RequestMapping("/hot-price-schedule-list-for-process")
 	public String getHotPriceEventsListForProcess(Model model) {
 		model.addAttribute("hotPriceEvents", hotPriceScheduleService.findAll());

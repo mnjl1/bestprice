@@ -3,18 +3,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Hot price form submission</title>
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	</head>
 	<body>
 		<header th:replace="fragments/header.html :: header"></header>
-		<form action="/process-hot-price-order-form" th:object="${hotPriceOrder}" method="post">
+		<form action="/company/process-hot-price-order-form" th:object="${hotPriceOrder}" method="post">
 	 		<input type="hidden" name="hotPriceSchedule" th:value="${hotPriceEvent.getHotPriceScheduleId()}"/>
+	 		<br>
 			Початок акції: <p th:text="${hotPriceEvent.hotPriceStartDate}">Start Date</p>
+			<br>
 			Кінець акції: <p  th:text="${hotPriceEvent.hotPriceEndDate}">Start Date</p>
-			Постачальник: <input type="text" th:field="*{companyName}"/>
-			Штрих-код: <input type="text" th:field="*{productEan}"/>
-			Товар: <input type="text" th:field="*{productName}"/>
-			Регулярна ціна: <input type="number" th:field="*{regularPrice}"/>
-			Ціна зі зніжкою: <input type="number" th:field="*{discountPrice}"/>
+			<br>
+			<label for="company">Постачальник</label>
+			<input type="text" name="company" th:field="*{companyName}"/>
+			<br>
+			<label name="ean">Штрих-код</label>
+			<input type="text" name="ean" th:field="*{productEan}"/>
+			<br>
+			<label for="product">Товар</label>
+			<input type="text" name="product" th:field="*{productName}"/>
+			<br>
+			<label for="reg-price">Регулярна ціна</label>
+			<input type="number" for="reg-price" th:field="*{regularPrice}"/>
+			<br>
+			<label for="dicsount-price">Ціна зі зніжкою</label>
+			<input type="number" for="discount-price" th:field="*{discountPrice}"/>
+			<br><br>
 			<input type="submit" value="Зберегти"/>
 		</form>
 	</body>

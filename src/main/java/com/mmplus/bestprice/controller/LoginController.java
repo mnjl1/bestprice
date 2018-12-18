@@ -8,7 +8,11 @@ public class LoginController {
 
 	@GetMapping("/login")
 	public String showLoginForm() {
-
 		return "login";
+	}
+	
+	@GetMapping("/access-denied")
+	public String showAccessDeniedPage() {
+		return "access-denied";
 	}
 }

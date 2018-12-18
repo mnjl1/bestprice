@@ -11,14 +11,18 @@
     
     <div class="container">
         <div th:if="${not #lists.isEmpty(hotPriceEvents)}">
-            <h2>Hot price schedule"</h2>
+            <h2>Гаряча ціна"</h2>
             <table>
                 <tr>
                     <th>Id</th>
                     <td>Місяць</td>
                     <th>Початок</th>
                     <th>Кінець</th>
-                    <th>Подати замовлення</th>
+                    <th>
+                    <div sec:authorize="hasRole('COMPANY')">
+                    	Подати замовлення
+                    </div>
+                    </th>
                 </tr>
                 <tr th:each="event:${hotPriceEvents}">
                     <td th:utext="${event.getHotPriceScheduleId()}"></td>
@@ -26,7 +30,9 @@
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Подати замовлення</a>
+                    	<div sec:authorize="hasRole('COMPANY')">
+                    	<a th:href="@{${'/company/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Подати замовлення</a>
+                    	</div>
                     </td>
                 </tr> 
             </table>

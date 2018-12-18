@@ -30,10 +30,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/").authenticated()
+			.antMatchers("/welcome-page").permitAll()
+			.antMatchers("/mmplus/**").hasAnyRole("MANAGER")
+			.antMatchers("/company/hot-price-schedule-list").hasAnyRole("COMPANY", "MANAGER")
 			.and()
-			.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
+			.formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()
 			.and()
-			.logout().permitAll();		
+			.logout().permitAll()
+			.and()
+			.exceptionHandling().accessDeniedPage("/access-denied");		
 	}
 }
