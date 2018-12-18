@@ -9,7 +9,13 @@ public class MainController {
 	
 
 	@RequestMapping("/")
+	public String welcome() {
+		return "welcome-page";
+	}
+	
+	@RequestMapping("/home")
 	public String home() {
 		return "home";
 	}
+	
 }

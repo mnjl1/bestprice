@@ -9,7 +9,17 @@
     <title>Welcome</title>
 </head>
 <body>
-    <header th:replace="fragments/header.html :: header"></header>
-	
+    <header th:replace="fragments/header.html :: header">
+    </header>
+		
+		<div sec:authorize="hasRole('MANAGER')">
+			<a href="/mmplus/hot-price-schedule-form">Додати новий період</a>
+		</div>
+		<div>
+			<a href="/company/hot-price-schedule-list">Графік "Гаряча ціна"</a> 
+		</div>
+        <div sec:authorize="hasRole('MANAGER')">
+        	<a href="/mmplus/hot-price-schedule-list-for-process">Обробка замовлень</a>	
+        </div>      	
 </body>
 </html>
