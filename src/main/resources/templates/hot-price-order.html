@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.com">
-	<head>
+<html xmlns:th="http://www.thymeleaf.com"
+	  xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  >
+<head>
 	<meta charset="UTF-8"/>
-		<title>Обробка замовлення від Постачальника</title>
-		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-	</head>
-	<body>
-		
-		<form action=# th:object="${hotPriceOrder}" method="post">
-			<input th:value="${id}" th:field="*{id}"/>
-			Початок акції:<p th:text="${hotPriceSchedule}"></p>
-			Дата подачі замовлення:<p th:text="*{createdAt}"></p>
-			Постачальник: <p th:text="*{companyName}"/>
-			Штрих-код: <p th:text="*{productEan}"/>
-			Товар: <p th:text="*{productName}"/>
-			Регулярна ціна: <p th:text="*{regularPrice}"/>
-			Ціна зі зніжкою: <p th:text="*{discountPrice}"/>
-			
-			<!-- <div>
+	<title>Обробка замовлення від Постачальника</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+
+<form action=# th:object="${hotPriceOrder}" method="post">
+	<input th:value="${id}" th:field="*{id}"/>
+	Початок акції:<p th:text="${hotPriceSchedule}"></p>
+	Дата подачі замовлення:<p th:text="*{createdAt}"></p>
+	Постачальник: <p th:text="*{companyName}"/>
+	Штрих-код: <p th:text="*{productEan}"/>
+	Товар: <p th:text="*{productName}"/>
+	Регулярна ціна: <p th:text="*{regularPrice}"/>
+	Ціна зі зніжкою: <p th:text="*{discountPrice}"/>
+
+	<!-- <div>
 			<select name="status" id="status" th:field="*{orderStatus}">
 				<option th:each="status : ${statuses}"
 						th:value="${status}"
@@ -27,19 +29,20 @@
 			</select>
 				<input type="hidden" th:field="*{orderStatus}"/>
 			</div> -->
-			
-			<div>
-				<select th:fiels="*{orderStatus}">
-					<option th:each="status : ${T(com.mmplus.bestprice.entity.OrderStatus).values()}"
-							th:value="${status.getOrderStatusValue()}"
-							th:text="${status}"
-					>Статус</option>			
-				</select>
-				<input th:field="*{orderStatus}"/>
-			</div>
-			<br><br>
-			<input type="button" value="Зберегти"/>
-		</form>
-	</body>
+
+	<div sec:authorize="hasRole('MANAGER')">
+		<select th:fiels="*{orderStatus}">
+			<option th:each="status : ${T(com.mmplus.bestprice.entity.OrderStatus).values()}"
+					th:value="${status.getOrderStatusValue()}"
+					th:text="${status}"
+			>Статус
+			</option>
+		</select>
+		<input th:field="*{orderStatus}"/>
+	</div>
+	<br><br>
+	<input type="button" value="Зберегти"/>
+</form>
+</body>
 
 </html>

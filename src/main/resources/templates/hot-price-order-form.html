@@ -8,11 +8,11 @@
 	<body>
 		<header th:replace="fragments/header.html :: header"></header>
 		<form action="/company/process-hot-price-order-form" th:object="${hotPriceOrder}" method="post">
-	 		<input type="hidden" name="hotPriceSchedule" th:value="${hotPriceEvent.getHotPriceScheduleId()}"/>
+	 		<input type="hidden" name="hotPriceSchedule" th:value="${hotPriceSchedule.getHotPriceScheduleId()}"/>
 	 		<br>
-			Початок акції: <p th:text="${hotPriceEvent.hotPriceStartDate}">Start Date</p>
+			Початок акції: <p th:text="${hotPriceSchedule.hotPriceStartDate}">Start Date</p>
 			<br>
-			Кінець акції: <p  th:text="${hotPriceEvent.hotPriceEndDate}">Start Date</p>
+			Кінець акції: <p  th:text="${hotPriceSchedule.hotPriceEndDate}">Start Date</p>
 			<br>
 			<label for="company">Постачальник</label>
 			<input type="text" name="company" th:field="*{companyName}"/>

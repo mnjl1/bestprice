@@ -1,32 +1,22 @@
 package com.mmplus.bestprice.controller;
 
-import java.time.LocalDate;
-
+import com.mmplus.bestprice.entity.HotPriceOrder;
+import com.mmplus.bestprice.service.HotPriceOrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mmplus.bestprice.entity.HotPriceOrder;
-import com.mmplus.bestprice.service.HotPriceOrderService;
-import com.mmplus.bestprice.service.HotPriceScheduleService;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping()
 public class HotPriceOrderController {
 
 	private HotPriceOrderService hotPriceOrderService;
-	private HotPriceScheduleService hotPriceScheduleService;
 
-	public HotPriceOrderController(HotPriceOrderService hotPriceOrderService, HotPriceScheduleService hotPriceScheduleService) {
+	public HotPriceOrderController(HotPriceOrderService hotPriceOrderService) {
 		this.hotPriceOrderService = hotPriceOrderService;
-		this.hotPriceScheduleService = hotPriceScheduleService;
-	}
-
-	@RequestMapping("/hot-price-order-form")
-	public String hotPriceOrderForm(Model model, HotPriceOrder hotPriceOrder) {
-		model.addAttribute("hotPriceOrder", hotPriceOrder);
-		return "hot-price-order-form";
 	}
 	
 	@RequestMapping("/mmplus/hot-price-order/{id}")
@@ -37,5 +27,6 @@ public class HotPriceOrderController {
 		model.addAttribute("hotPriceSchedule", hotPriceSchedule);
 		return "hot-price-order";
 	}
+
 
 }
