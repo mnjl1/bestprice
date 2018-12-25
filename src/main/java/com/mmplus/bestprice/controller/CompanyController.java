@@ -33,9 +33,15 @@ public class CompanyController {
 		HotPriceOrder hotPriceOrder = new HotPriceOrder();
 		HotPriceSchedule hotPriceSchedule = hotPriceScheduleService.findById(id);
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
-		model.addAttribute("hotPriceEvent", hotPriceSchedule);
+		model.addAttribute("hotPriceSchedule", hotPriceSchedule);
 		return "hot-price-order-form";
 	}
+
+    @RequestMapping("/hot-price-order-form")
+    public String hotPriceOrderForm(Model model, HotPriceOrder hotPriceOrder) {
+        model.addAttribute("hotPriceOrder", hotPriceOrder);
+        return "hot-price-order-form";
+    }
 	
 	@RequestMapping("/process-hot-price-order-form")
 	public String processHotPriceForm(Model model, HotPriceOrder hotPriceOrder) {
