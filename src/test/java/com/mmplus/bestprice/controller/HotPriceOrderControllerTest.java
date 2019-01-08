@@ -76,7 +76,7 @@ public class HotPriceOrderControllerTest {
     @Test
     public void shouldReturnHottPriceOrderTemplate_whenProcessOrderById() throws Exception {
 //        mockMvc.perform(get("/mmplus/hot-price-order/"
-//                +hotPriceSchedule.getHotPriceScheduleId()))
+//                +hotPriceSchedule.getId()))
 //                .andExpect(status().isOk())
 //                .andExpect(view().name("hot-price-order"));
         }

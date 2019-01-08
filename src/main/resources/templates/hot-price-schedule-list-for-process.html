@@ -19,12 +19,12 @@
                     <th>Обробка</th>
                 </tr>
                 <tr th:each="event:${hotPriceEvents}">
-                    <td th:utext="${event.getHotPriceScheduleId()}"></td>
+                    <td th:utext="${event.getId()}"></td>
                     <td th:utext="${event.getHotPriceStartDate().getMonth()}"></td>
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'/mmplus/hot-price-schedule-list-per-date/'+event.hotPriceScheduleId}}">Обробка замовлення</a>
+                    	<a th:href="@{${'/mmplus/hot-price-schedule-list-per-date/'+event.Id}}">Обробка замовлення</a>
                     </td>
                 </tr> 
             </table>

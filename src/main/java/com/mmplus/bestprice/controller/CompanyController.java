@@ -49,4 +49,5 @@ public class CompanyController {
 		hotPriceOrderService.saveOrUpdateHotPriceOrder(hotPriceOrder);
 		return "redirect:hot-price-schedule-list";
 	}
+
 }

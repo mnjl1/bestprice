@@ -19,7 +19,7 @@ public class HotPriceSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hotPriceScheduleId", nullable=false)
-    private Long hotPriceScheduleId;
+    private Long Id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "hotPriceStartDate")
@@ -35,28 +35,28 @@ public class HotPriceSchedule {
     public HotPriceSchedule(){
     }
    
-	public HotPriceSchedule(Long HotPriceScheduleId, LocalDate hotPriceStartDate, LocalDate hotPriceEndDate) {
+	public HotPriceSchedule(Long Id, LocalDate hotPriceStartDate, LocalDate hotPriceEndDate) {
 		super();
-		this.hotPriceScheduleId = HotPriceScheduleId;
+		this.Id = Id;
 		this.hotPriceStartDate = hotPriceStartDate;
 		this.hotPriceEndDate = hotPriceEndDate;
 	}
 
-	public HotPriceSchedule(Long hotPriceScheduleId, LocalDate hotPriceStartDate, LocalDate hotPriceEndDate,
+	public HotPriceSchedule(Long Id, LocalDate hotPriceStartDate, LocalDate hotPriceEndDate,
                             Set<HotPriceOrder> orders) {
 		super();
-		this.hotPriceScheduleId = hotPriceScheduleId;
+		this.Id = Id;
 		this.hotPriceStartDate = hotPriceStartDate;
 		this.hotPriceEndDate = hotPriceEndDate;
 		this.orders = orders;
 	}
 	
-	public Long getHotPriceScheduleId() {
-        return hotPriceScheduleId;
+	public Long getId() {
+        return Id;
     }
 
-    public void setHotPriceScheduleId(Long hotPriceScheduleId) {
-        this.hotPriceScheduleId = hotPriceScheduleId;
+    public void setId(Long id) {
+        this.Id = id;
     }
 
     public LocalDate getHotPriceStartDate() {
@@ -88,7 +88,7 @@ public class HotPriceSchedule {
         if (this == o) return true;
         if (!(o instanceof HotPriceSchedule)) return false;
         HotPriceSchedule that = (HotPriceSchedule) o;
-        return Objects.equals(hotPriceScheduleId, that.hotPriceScheduleId) &&
+        return Objects.equals(Id, that.Id) &&
                 Objects.equals(hotPriceStartDate, that.hotPriceStartDate) &&
                 Objects.equals(hotPriceEndDate, that.hotPriceEndDate);
     }
@@ -96,13 +96,13 @@ public class HotPriceSchedule {
     @Override
     public int hashCode() {
 
-        return Objects.hash(hotPriceScheduleId, hotPriceStartDate, hotPriceEndDate);
+        return Objects.hash(Id, hotPriceStartDate, hotPriceEndDate);
     }
 
     @Override
     public String toString() {
         return "HotPriceSchedule{" +
-                "hotPriceScheduleId=" + hotPriceScheduleId +
+                "Id=" + Id +
                 ", hotPriceStartDate=" + hotPriceStartDate +
                 ", hotPriceEndDate=" + hotPriceEndDate +
                 '}';

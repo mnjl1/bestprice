@@ -13,7 +13,7 @@
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
-                    <td>Постачальник</td>
+                    <th>Постачальник</th>
                     <th>Штрих-код</th>
                     <th>Товар</th>
                     <th>Регулярна ціна</th>
@@ -30,7 +30,7 @@
                     <td th:utext="${order.discountPrice}"></td>
                     <td th:utext="${order.orderStatus}"></td>
                     <td>
-                    	<a th:href="@{${'/mmplus/hot-price-order/'+order.id}}">Обробка замовлення</a>
+                    	<a th:href="@{${'/mmplus/hot-price-order-form/'+order.id}}">Обробка замовлення</a>
                     </td>
                 </tr> 
             </table>

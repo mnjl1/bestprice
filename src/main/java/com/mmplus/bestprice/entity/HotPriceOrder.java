@@ -1,7 +1,5 @@
 package com.mmplus.bestprice.entity;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,13 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "hotPriceOrder")
-public class HotPriceOrder {
+public class HotPriceOrder implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_id")
+	@Column(name = "hotPriceOrderId", nullable = false)
 	private Long id;
 
 	@Column(name = "company_name")
@@ -45,13 +45,15 @@ public class HotPriceOrder {
 	private HotPriceSchedule hotPriceSchedule;
 
 	@Column(name = "orderStatus")
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(value = EnumType.ORDINAL)
 	private OrderStatus orderStatus;
 
 	public HotPriceOrder() {
 	}
 
-	public HotPriceOrder(Long id, String companyName, String productEan, String productName, Long regularPrice, Long discountPrice, LocalDate createdAt, HotPriceSchedule hotPriceSchedule, OrderStatus orderStatus) {
+	public HotPriceOrder(Long id, String companyName, String productEan, String productName, Long regularPrice,
+						 Long discountPrice, LocalDate createdAt, HotPriceSchedule hotPriceSchedule,
+						 OrderStatus orderStatus) {
 		this.id = id;
 		this.companyName = companyName;
 		this.productEan = productEan;
@@ -61,14 +63,6 @@ public class HotPriceOrder {
 		this.createdAt = createdAt;
 		this.hotPriceSchedule = hotPriceSchedule;
 		this.orderStatus = orderStatus;
-	}
-
-	public Long getBestPriceOrderId() {
-		return id;
-	}
-
-	public void setBestPriceOrderId(Long bestPriceOrderId) {
-		this.id = bestPriceOrderId;
 	}
 
 	public String getCompanyName() {
@@ -117,14 +111,6 @@ public class HotPriceOrder {
 
 	public void setHotPriceSchedule(HotPriceSchedule hotPriceSchedule) {
 		this.hotPriceSchedule = hotPriceSchedule;
-	}
-
-	public Long getHotPriceOrderId() {
-		return id;
-	}
-
-	public void setHotPriceOrderId(Long hotPriceOrderId) {
-		this.id = hotPriceOrderId;
 	}
 
 	public Long getId() {

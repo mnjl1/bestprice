@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Hot price form submission</title>
 		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
@@ -8,7 +8,9 @@
 	<body>
 		<header th:replace="fragments/header.html :: header"></header>
 		<form action="/company/process-hot-price-order-form" th:object="${hotPriceOrder}" method="post">
-	 		<input type="hidden" name="hotPriceSchedule" th:value="${hotPriceSchedule.getHotPriceScheduleId()}"/>
+            <input type="hidden" th:field="*{id}">
+
+	 		<input type="hidden" name="hotPriceSchedule" th:value="${hotPriceSchedule.id}"/>
 	 		<br>
 			Початок акції: <p th:text="${hotPriceSchedule.hotPriceStartDate}">Start Date</p>
 			<br>
@@ -28,7 +30,25 @@
 			<br>
 			<label for="dicsount-price">Ціна зі зніжкою</label>
 			<input type="number" for="discount-price" th:field="*{discountPrice}"/>
-			<br><br>
+			<br>
+			<div sec:authorize="hasRole('MANAGER')">
+				<!--<select class="form-control" name="status" id="status" th:field="*{orderStatus}">-->
+					<!--<option th:each="status : ${T(com.mmplus.bestprice.entity.OrderStatus).values()}"-->
+							<!--th:value="${status.getOrderStatusValue()}"-->
+							<!--th:text="${status}"-->
+					<!--&gt;Статус-->
+					<!--</option>-->
+				<!--</select>-->
+
+				<select class="form-control" name="status" id="status" th:field="*{orderStatus}">
+					<option th:each="status: ${statuses}"
+							th:value="${status.getOrderStatusValue()}"
+							th:text="${status.toString()}">Статус замовлення
+					</option>
+				</select>
+				<input type="hidden" th:field="*{orderStatus}" sec:authorize="hasRole('MANAGER')"/>
+			</div>
+			<br>
 			<input type="submit" value="Зберегти"/>
 		</form>
 	</body>
