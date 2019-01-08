@@ -25,13 +25,13 @@
                     </th>
                 </tr>
                 <tr th:each="event:${hotPriceEvents}">
-                    <td th:utext="${event.getHotPriceScheduleId()}"></td>
+                    <td th:utext="${event.getId()}"></td>
                     <td th:utext="${event.getHotPriceStartDate().getMonth()}"></td>
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
                     	<div sec:authorize="hasRole('COMPANY')">
-                    	<a th:href="@{${'/company/create-hot-price-order-form/'+event.hotPriceScheduleId}}">Подати замовлення</a>
+                    	<a th:href="@{${'/company/create-hot-price-order-form/'+event.Id}}">Подати замовлення</a>
                     	</div>
                     </td>
                 </tr> 

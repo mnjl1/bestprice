@@ -67,7 +67,7 @@ public class CompanyControllerTest {
     @Test
     public void shouldRedirectToOrderForm_whenSaveOrUpdate() throws Exception {
         mockMvc.perform(get("/company/create-hot-price-order-form/"
-                +hotPriceSchedule.getHotPriceScheduleId()))
+                +hotPriceSchedule.getId()))
                 .andExpect(status().isOk());
     }
 

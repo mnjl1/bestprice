@@ -8,13 +8,13 @@ drop table if exists hotPriceOrder;
 );
 
  create table hotPriceOrder(
- order_id bigserial primary key,
+ hotPriceOrderId bigserial primary key,
  company_name varchar (50),
  ean varchar (14),
  product_name varchar (50),
  regular_price DOUBLE PRECISION ,
  discount_price DOUBLE PRECISION ,
+ created_date date,
  hotPriceScheduleId int ,
- orderStatus int ,
- created_date date
+ orderStatus int
 );

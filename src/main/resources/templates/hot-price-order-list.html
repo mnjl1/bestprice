@@ -7,7 +7,7 @@
 </head>
 <body>
 <header th:replace="fragments/header.html :: header"></header>
-<a href="/hot-price-order">Обробка замовлень</a>
+<a href="/company/hot-price-order-form">Обробка замовлень</a>
     <div class="container">
         <div th:if="${not #lists.isEmpty(orders)}">
             <h2>Hot price event list</h2>
@@ -27,7 +27,7 @@
                     <td th:utext="${event.getHotPriceStartDate()}"></td>
                     <td th:utext="${event.getHotPriceEndDate()}"></td>
                     <td>
-                    	<a th:href="@{${'event.hotPriceScheduleId}}">Обробка замовлення</a>
+                    	<a th:href="@{${'event.id}}">Обробка замовлення</a>
                     </td>
                 </tr> 
             </table>
