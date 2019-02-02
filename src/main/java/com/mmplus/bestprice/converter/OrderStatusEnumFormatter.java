@@ -15,7 +15,7 @@ public class OrderStatusEnumFormatter implements Formatter<OrderStatus> {
     public OrderStatus parse(final String s, final Locale locale) throws ParseException {
         return Arrays.stream(OrderStatus.values())
                 .filter(orderStatus -> orderStatus.toString().equals(s))
-                .findAny().orElse(OrderStatus.valueOf(1));
+                .findAny().orElse(OrderStatus.ORDER_STATUS_UNDER_CONSIDERATION);
     }
 
     @Override

@@ -28,6 +28,7 @@ public class HotPriceOrderController {
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
 		model.addAttribute("hotPriceSchedule", hotPriceSchedule);
 		model.addAttribute("statuses", Arrays.asList(OrderStatus.values()));
+
 		return "hot-price-order-form";
 	}
 }

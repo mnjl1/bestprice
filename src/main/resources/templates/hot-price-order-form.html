@@ -40,10 +40,10 @@
 					<!--</option>-->
 				<!--</select>-->
 
-				<select class="form-control" name="status" id="status" th:field="*{orderStatus}">
-					<option th:each="status: ${statuses}"
-							th:value="${status.getOrderStatusValue()}"
-							th:text="${status.toString()}">Статус замовлення
+				<select class="form-control" name="orderStatus" id="orderStatus" th:field="*{orderStatus}">
+					<option th:each="orderStatus: ${statuses}"
+							th:value="${orderStatus.valueOf(orderStatus.getOrderStatusValue())}"
+							th:text="${orderStatus}">Статус замовлення
 					</option>
 				</select>
 				<input type="hidden" th:field="*{orderStatus}" sec:authorize="hasRole('MANAGER')"/>
