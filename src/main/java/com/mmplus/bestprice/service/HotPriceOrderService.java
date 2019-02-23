@@ -1,6 +1,7 @@
 package com.mmplus.bestprice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.mmplus.bestprice.entity.HotPriceOrder;
 
@@ -12,5 +13,5 @@ public interface HotPriceOrderService {
 
 	List<HotPriceOrder> findAll();
 
-	HotPriceOrder findByid(Long id);
+	Optional<HotPriceOrder> findByid(Long id);
 }

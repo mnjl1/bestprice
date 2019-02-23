@@ -1,5 +1,6 @@
 drop table if exists hotPriceSchedule;
 drop table if exists hotPriceOrder;
+drop table if exists company;
 
   create table hotPriceSchedule(
   hotPriceScheduleId bigserial primary key,
@@ -16,5 +17,14 @@ drop table if exists hotPriceOrder;
  discount_price DOUBLE PRECISION ,
  created_date date,
  hotPriceScheduleId int ,
- orderStatus int
+ orderStatus int,
+ company_id int
+);
+
+create table company(
+  company_id bigserial primary key,
+  company_name varchar(100),
+  email varchar(50),
+  password varchar(50),
+  hotPriceOrderId int
 );

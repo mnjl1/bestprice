@@ -22,7 +22,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 			.inMemoryAuthentication()
 				.withUser(users.username("f@g.com").password("123").roles("COMPANY"))
-				.withUser(users.username("v@g.com").password("123").roles("MANAGER"));
+				.withUser(users.username("v@g.com").password("123").roles("MANAGER"))
+				.withUser(users.username("admin@g.com").password("admin").roles("BUYER"));
 	}
 
 	@Override
@@ -33,7 +34,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/welcome-page").permitAll()
 			.antMatchers("/mmplus/**").hasAnyRole("MANAGER")
 			.antMatchers("/company/hot-price-schedule-list").hasAnyRole("COMPANY", "MANAGER")
-			.and()
+			.antMatchers("/buyer/companyForm").hasAnyRole("BUYER")
+				.and()
 			.formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()
 			.and()
 			.logout().permitAll()

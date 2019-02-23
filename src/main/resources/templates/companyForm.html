@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новий Потачальник.</title>
+</head>
+<body>
+    <form method="post" th:action="@{/buyer/process-company-form}" th:object="${company}">
+            <span class="validationError">
+            </span>
+            <label for="companyName">Постачальник: </label>
+            <input type="text" th:field="*{companyName}"/>
+            <br/>
+            <label for="email">Email:</label>
+            <input type="email" th:field="*{email}"/>
+            <br/>
+            <label for="password">Пароль:</label>
+            <input type="password" th:field="*{password}"/>
+            <br/>
+            <input type="submit" value="Додати Постачальнвка."/>
+    </form>
+</body>
+</html>

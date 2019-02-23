@@ -3,6 +3,7 @@ package com.mmplus.bestprice.service;
 import com.mmplus.bestprice.entity.HotPriceSchedule;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface HotPriceScheduleService {
 
@@ -10,6 +11,6 @@ public interface HotPriceScheduleService {
 
     List<HotPriceSchedule> findAll();
     
-    HotPriceSchedule findById(Long id);
+    Optional<HotPriceSchedule> findById(Long id);
 
 }

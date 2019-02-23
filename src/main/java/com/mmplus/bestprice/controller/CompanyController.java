@@ -31,23 +31,23 @@ public class CompanyController {
 	@RequestMapping(value = "/create-hot-price-order-form/{id}", method = RequestMethod.GET)
 	public String saveOrUpdateOrder(Model model, @PathVariable(value = "id") Long id) {
 		HotPriceOrder hotPriceOrder = new HotPriceOrder();
-		HotPriceSchedule hotPriceSchedule = hotPriceScheduleService.findById(id);
+		HotPriceSchedule hotPriceSchedule = hotPriceScheduleService.findById(id).get();
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
 		model.addAttribute("hotPriceSchedule", hotPriceSchedule);
 		return "hot-price-order-form";
 	}
 
-    @RequestMapping("/hot-price-order-form")
+    @RequestMapping(value = "/hot-price-order-form", method = RequestMethod.GET)
     public String hotPriceOrderForm(Model model, HotPriceOrder hotPriceOrder) {
         model.addAttribute("hotPriceOrder", hotPriceOrder);
         return "hot-price-order-form";
     }
 	
-	@RequestMapping("/process-hot-price-order-form")
+	@RequestMapping(value = "/process-hot-price-order-form", method = RequestMethod.POST)
 	public String processHotPriceForm(Model model, HotPriceOrder hotPriceOrder) {
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
 		hotPriceOrderService.saveOrUpdateHotPriceOrder(hotPriceOrder);
-		return "redirect:hot-price-schedule-list";
+		return "redirect:/hot-price-schedule-list";
 	}
 
 }

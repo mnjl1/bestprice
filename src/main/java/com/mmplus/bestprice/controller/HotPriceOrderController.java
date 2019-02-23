@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Controller
 @RequestMapping()
@@ -23,8 +24,8 @@ public class HotPriceOrderController {
 	
 	@RequestMapping("/mmplus/hot-price-order-form/{id}")
 	public String processHotPriceOrder(Model model, @PathVariable(value = "id") Long id) {
-		HotPriceOrder hotPriceOrder = hotPriceOrderService.findByid(id);
-		HotPriceSchedule hotPriceSchedule = hotPriceOrder.getHotPriceSchedule();
+		Optional<HotPriceOrder> hotPriceOrder = hotPriceOrderService.findByid(id);
+		HotPriceSchedule hotPriceSchedule = hotPriceOrder.get().getHotPriceSchedule();
 		model.addAttribute("hotPriceOrder", hotPriceOrder);
 		model.addAttribute("hotPriceSchedule", hotPriceSchedule);
 		model.addAttribute("statuses", Arrays.asList(OrderStatus.values()));

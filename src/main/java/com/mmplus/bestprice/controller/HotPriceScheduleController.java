@@ -1,15 +1,14 @@
 package com.mmplus.bestprice.controller;
 
-import java.util.Set;
-
+import com.mmplus.bestprice.entity.HotPriceOrder;
+import com.mmplus.bestprice.entity.HotPriceSchedule;
+import com.mmplus.bestprice.service.HotPriceScheduleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mmplus.bestprice.entity.HotPriceOrder;
-import com.mmplus.bestprice.entity.HotPriceSchedule;
-import com.mmplus.bestprice.service.HotPriceScheduleService;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/mmplus")
@@ -43,7 +42,7 @@ public class HotPriceScheduleController {
 
 	@RequestMapping("/hot-price-schedule-list-per-date/{id}")
 	public String getOdersListPerDate(@PathVariable(value = "id") Long id, Model model) {
-		Set<HotPriceOrder> ordersPerDate = hotPriceScheduleService.findById(id).getOrders();
+		Set<HotPriceOrder> ordersPerDate = hotPriceScheduleService.findById(id).get().getOrders();
 		model.addAttribute("ordersPerDate", ordersPerDate);
 
 		return "hot-price-schedule-list-per-date";
