@@ -5,6 +5,7 @@ import com.mmplus.bestprice.repository.HotPriceScheduleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HotPriceScheduleServiceImpl implements HotPriceScheduleService {
@@ -27,7 +28,7 @@ public class HotPriceScheduleServiceImpl implements HotPriceScheduleService {
     }
 
 	@Override
-	public HotPriceSchedule findById(Long id) {
-		return hotPriceScheduleRepository.getOne(id);
+	public Optional<HotPriceSchedule> findById(Long id) {
+		return hotPriceScheduleRepository.findById(id);
 	}
 }

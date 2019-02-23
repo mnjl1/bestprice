@@ -2,10 +2,10 @@ package com.mmplus.bestprice.service;
 
 import com.mmplus.bestprice.entity.HotPriceOrder;
 import com.mmplus.bestprice.repository.HotPriceOrderRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class HotPriceOrderImpl implements HotPriceOrderService {
@@ -32,7 +32,7 @@ public class HotPriceOrderImpl implements HotPriceOrderService {
 	}
 
 	@Override
-	public HotPriceOrder findByid(Long id) {
-		return hotPriceOrderRepository.getOne(id);
+	public Optional<HotPriceOrder> findByid(Long id) {
+		return hotPriceOrderRepository.findById(id);
 	}
 }

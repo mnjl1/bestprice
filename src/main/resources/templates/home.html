@@ -20,6 +20,9 @@
 		</div>
         <div sec:authorize="hasRole('MANAGER')">
         	<a href="/mmplus/hot-price-schedule-list-for-process">Обробка замовлень</a>	
-        </div>      	
+        </div>
+        <div sec:authorize="hasRole('BUYER')">
+            <a href="/buyer/companyForm">Додати нового Постачальника.</a>
+        </div>
 </body>
 </html>

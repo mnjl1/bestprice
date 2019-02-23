@@ -18,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -82,7 +83,7 @@ public class CompanyControllerTest {
 
     @Test
     public void shouldRedirectToScheduleList_whenSavedForm() throws Exception {
-        mockMvc.perform(get("/company/process-hot-price-order-form"))
-                .andExpect(redirectedUrl("hot-price-schedule-list"));
+        mockMvc.perform(post("/company/process-hot-price-order-form"))
+                .andExpect(redirectedUrl("/hot-price-schedule-list"));
     }
 }

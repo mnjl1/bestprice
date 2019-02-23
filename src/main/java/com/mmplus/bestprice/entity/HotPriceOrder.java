@@ -1,5 +1,7 @@
 package com.mmplus.bestprice.entity;
 
+import com.mmplus.bestprice.entity.profile.Company;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -43,6 +45,10 @@ public class HotPriceOrder implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hotPriceScheduleId")
 	private HotPriceSchedule hotPriceSchedule;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "company_id")
+	private Company company;
 
 	@Column(name = "orderStatus")
 	@Enumerated(value = EnumType.ORDINAL)
@@ -137,6 +143,14 @@ public class HotPriceOrder implements Serializable {
 		this.createdAt = createdAt;
 	}
 
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -200,7 +214,17 @@ public class HotPriceOrder implements Serializable {
 
 	@Override
 	public String toString() {
-		return "HotPriceOrder [id=" + id + ", companyName=" + companyName + ", productEan=" + productEan + ", productName=" + productName + ", regularPrice=" + regularPrice + ", discountPrice=" + discountPrice + ", createdAt=" + createdAt
-				+ ", hotPriceSchedule=" + hotPriceSchedule + ", orderStatus=" + orderStatus + "]";
+		return "HotPriceOrder{" +
+				"id=" + id +
+				", company=" + company +
+				", companyName='" + companyName + '\'' +
+				", productEan='" + productEan + '\'' +
+				", productName='" + productName + '\'' +
+				", regularPrice=" + regularPrice +
+				", discountPrice=" + discountPrice +
+				", createdAt=" + createdAt +
+				", hotPriceSchedule=" + hotPriceSchedule +
+				", orderStatus=" + orderStatus +
+				'}';
 	}
 }

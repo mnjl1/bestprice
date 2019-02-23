@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -51,14 +52,13 @@ public class HotPriceScheduleServiceTest {
     @Test
     public void findBestPriceEventByIdTest(){
 
-        Mockito.when(hotPriceScheduleRepository.getOne(1L))
-                .thenReturn(hotPriceSchedule);
+        Mockito.when(hotPriceScheduleRepository.findById(1L))
+                .thenReturn(Optional.ofNullable(hotPriceSchedule));
 
-        HotPriceSchedule event = hotPriceScheduleService.findById(1L);
+        Optional<HotPriceSchedule> event = hotPriceScheduleRepository.findById(1L);
 
-        assertThat(event).isNotNull()
-                .isEqualTo(hotPriceSchedule)
-                .isEqualToComparingFieldByField(hotPriceSchedule);
+        assertThat(event).get().isNotNull()
+                .isEqualTo(hotPriceSchedule);
     }
 
     @Test

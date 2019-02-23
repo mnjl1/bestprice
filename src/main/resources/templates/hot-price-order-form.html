@@ -32,14 +32,6 @@
 			<input type="number" for="discount-price" th:field="*{discountPrice}"/>
 			<br>
 			<div sec:authorize="hasRole('MANAGER')">
-				<!--<select class="form-control" name="status" id="status" th:field="*{orderStatus}">-->
-					<!--<option th:each="status : ${T(com.mmplus.bestprice.entity.OrderStatus).values()}"-->
-							<!--th:value="${status.getOrderStatusValue()}"-->
-							<!--th:text="${status}"-->
-					<!--&gt;Статус-->
-					<!--</option>-->
-				<!--</select>-->
-
 				<select class="form-control" name="orderStatus" id="orderStatus" th:field="*{orderStatus}">
 					<option th:each="orderStatus: ${statuses}"
 							th:value="${orderStatus.valueOf(orderStatus.getOrderStatusValue())}"
